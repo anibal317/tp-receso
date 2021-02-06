@@ -1,0 +1,32 @@
+th{
+    font-size: 12px;
+}
+td{
+    padding: 0;
+    width: 12px;
+}
+
+i{
+    font-weight: bold;
+}
+i:hover{
+    color:lightblue
+}
+.tblContainter{
+    height: auto;
+    display: flex;
+    border: 1px solid red;
+    padding: 2px;
+}
+#tblProducts{
+    width: 60%;
+    float:left;
+}
+#tblCart{
+    width: 39%;
+    float: right;
+}
+.imgProducts{
+    width: 50%;
+    height: auto;
+}

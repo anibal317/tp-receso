@@ -14,19 +14,36 @@
 
 <body>
   <div class="nav"></div>
-  <div class="row container">
-    <thead>
-      <tr>
-        <th scope="col">Mes</th>
-        <th scope="col">Año</th>
-        <th scope="col">Monto inicial</th>
-        <th scope="col">Monto Final</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="tblContainter" id="tblProducts">
+    <table class="tblProducts table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Imágenes</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    </tbody>
+      </tbody>
+    </table>
+  </div>
+  <div class="tblContainter" id="tblCart">
+    <table class="tblCart table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Sub total</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <p>total</p>
   </div>
   <div class="footer"></div>
 
@@ -34,8 +51,8 @@
   <script src="assets/js/popper.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.js"></script>
   <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="assets/js/config.js"></script>
   <script src="assets/js/domElements.js"></script>
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/apiFunctions.js"></script>
   <script src="assets/js/generalFunctions.js"></script>
   <script src="assets/js/main.js"></script>

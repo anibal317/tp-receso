@@ -1,4 +1,6 @@
 window.addEventListener("load", () =>{
-    getAllProducts()    ;
+    getAllProducts();
+    getUsers();
+
 })
 

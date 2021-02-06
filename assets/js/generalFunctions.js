@@ -1,47 +1,39 @@
-function createRow(itemsTable) {
-    console.log(itemsTable)
+function createProductsRow(itemsTable) {
     tbody.innerHTML = ""
     let insertData = (itemsTable, index) => {
         let tr = document.createElement("tr");
-        let tdinicio = document.createElement("td");
-        let tdanio = document.createElement("td");
-        let tdfin = document.createElement("td");
+        let tdPrice = document.createElement("td");
+        let tdStcok = document.createElement("td");
+        let tdimg = document.createElement("td");
+        let img = document.createElement("img");
         let tdacciones = document.createElement("td");
         let th = document.createElement("th");
-        let deleteIcon = document.createElement("i");
-        let editIcon = document.createElement("i");
-        let separador = document.createTextNode(" - ");
+        let buyProduct = document.createElement("i");
 
         th.setAttribute("scope", "row");
-        th.innerHTML = itemsTable.mes;
+        th.innerHTML = itemsTable[1].description + " - " + itemsTable[1].brand;
         tr.appendChild(th);
 
-        tdanio.innerHTML = itemsTable.anio;
-        tr.appendChild(tdanio);
+        tdPrice.innerHTML = "$"+itemsTable[1].price;
+        tr.appendChild(tdPrice);
 
-        tdinicio.innerHTML = itemsTable.start;
-        tr.appendChild(tdinicio);
+        tdStcok.innerHTML = itemsTable[1].qty_stock;
+        tr.appendChild(tdStcok);
 
-        tdfin.innerHTML = itemsTable.end;
-        tr.appendChild(tdfin);
 
-        deleteIcon.setAttribute("class", "far fa-trash-alt");
-        deleteIcon.setAttribute("data-action", "loadDelete");
-        deleteIcon.setAttribute("data-target", "#deleteModal");
-        deleteIcon.setAttribute("data-toggle", "modal");
-        deleteIcon.setAttribute("data-id", index);
-        deleteIcon.setAttribute("data-internalId", itemsTable.id);
+        img.setAttribute("src",itemsTable[1].img)
+        img.setAttribute("class","imgProducts")
 
-        editIcon.setAttribute("class", "far fa-edit");
-        editIcon.setAttribute("data-action", "loadEdit");
-        editIcon.setAttribute("data-target", "#editModal");
-        editIcon.setAttribute("data-toggle", "modal");
-        editIcon.setAttribute("data-id", index);
-        editIcon.setAttribute("data-InternalId", itemsTable.id);
+        tdimg.appendChild(img)
+        tr.appendChild(tdimg)
 
-        tdacciones.appendChild(deleteIcon);
-        tdacciones.appendChild(separador);
-        tdacciones.appendChild(editIcon);
+
+        buyProduct.setAttribute("class", "fab fa-opencart");
+        buyProduct.setAttribute("data-action", "buy");
+        buyProduct.setAttribute("data-id", index);
+        buyProduct.setAttribute("data-internalid", itemsTable[0]);
+
+        tdacciones.appendChild(buyProduct);
 
         tdacciones.setAttribute("class", "acciones");
         tr.appendChild(tdacciones);
@@ -52,5 +44,22 @@ function createRow(itemsTable) {
 
     for (let i = 0; i < itemsTable.length; i++) {
         insertData(itemsTable[i], i);
+    }
+}
+
+function crearListeners() {
+    for (let i = 0; i < buyProduct.length; i++) {
+        buyProduct[i].removeEventListener("click", actions)
+        buyProduct[i].addEventListener("click", actions);
+    };
+}
+
+function actions(e) {
+    jQuery.noConflict();
+    switch (e.target.dataset.action) {
+        case "buy":
+            console.log("comprar", e.target.dataset.internalid)
+        default:
+            break;
     }
 }
