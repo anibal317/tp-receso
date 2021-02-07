@@ -14,15 +14,15 @@ function createProductsRow(itemsTable) {
         th.innerHTML = itemsTable[1].description + " - " + itemsTable[1].brand;
         tr.appendChild(th);
 
-        tdPrice.innerHTML = "$"+itemsTable[1].price;
+        tdPrice.innerHTML = "$" + itemsTable[1].price;
         tr.appendChild(tdPrice);
 
         tdStcok.innerHTML = itemsTable[1].qty_stock;
         tr.appendChild(tdStcok);
 
 
-        img.setAttribute("src",itemsTable[1].img)
-        img.setAttribute("class","imgProducts")
+        img.setAttribute("src", itemsTable[1].img)
+        img.setAttribute("class", "imgProducts")
 
         tdimg.appendChild(img)
         tr.appendChild(tdimg)
@@ -62,4 +62,32 @@ function actions(e) {
         default:
             break;
     }
+}
+
+   async function createSession(txtUser, txtPass) {
+    let userInfo = await getUsers().then(result => Object.entries(result).filter(user => user[1].user === txtUser.value && user[1].pass === txtPass.value))
+    
+        if (userInfo.length !== 0) {
+        let {img,isAdmin,mail,pass,user} = userInfo[0][1]
+        let userData = {
+            img,
+            isAdmin,
+            mail,
+            pass: MD5(pass),
+            user
+        }
+        sessionStorage.setItem("sessionCart", JSON.stringify(userData))
+        return redirect(routes.products)
+    }else{
+        return alert("usuario equivocado")
+    }
+}
+
+function redirect(page){
+    window.location.replace(page)
+}
+
+function logout(){
+    sessionStorage.removeItem("sessionCart");
+    redirect(routes.home)
 }

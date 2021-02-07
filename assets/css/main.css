@@ -30,3 +30,33 @@ i:hover{
     width: 50%;
     height: auto;
 }
+.imgLogo{
+    width: 2.5%;
+}
+.imgCarrousel{
+    width: 50%;
+}
+.imgAcordion, #frmImg{
+    width: 20%;
+}
+.carousel-inner{
+    left: 350px;
+}
+img{
+    vertical-align: text-top;  
+    position: float;
+}
+.hide{
+    display: none;
+}
+.footer{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+}
+.formButtons{
+    width: auto;
+    margin-top: 20px;
+    margin-left: 150px; 
+}
