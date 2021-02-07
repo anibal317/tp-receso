@@ -58,7 +58,7 @@ function actions(e) {
     jQuery.noConflict();
     switch (e.target.dataset.action) {
         case "buy":
-            console.log("comprar", e.target.dataset.internalid)
+            addToCart()
         default:
             break;
     }
