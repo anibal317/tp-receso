@@ -24,13 +24,14 @@ function clearImg(){
 function ver(event){
     event.preventDefault()
     let productToAdd = {
-        descripcion: txtProductDescription.value,
+        description: txtProductDescription.value,
         brand: txtProductBrand.value,
-        price: parseInt(intProductPrice.value),
+        price: parseFloat(intProductPrice.value),
         qty_stock: parseInt(intProductQty.value),
         state: Boolean(txtProductState.value) ,
         img: txtProductImg.value || imgDefault
     }
     addNewProduct(productToAdd)
+    btnClearForm.click()
 }
 lnkLogout.addEventListener("click",logout)

@@ -12,13 +12,26 @@ async function getUsers() {
   return allUsers;
 }
 
+async function getProductById(idProduct) {
+  let product = await fetch(`https://mr-mercado-default-rtdb.firebaseio.com/products/${idProduct}.json`)
+    .then(response => response.json())
+    .catch(error => console.log('error', error));
+  return product
+}
+
+async function getUserCart(idUser) {
+  userCart = await fetch(`https://mr-mercado-default-rtdb.firebaseio.com/cart/${idUser}.json`)
+    .then(response => response.json())
+    .catch(error => console.log('error', error));
+  return userCart
+}
+
 function addNewProduct(product) {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   var raw = JSON.stringify(product);
 
-  console.log(raw)
   var requestOptions = {
     method: 'POST',
     headers: myHeaders,
@@ -28,39 +41,19 @@ function addNewProduct(product) {
 
   fetch("https://mr-mercado-default-rtdb.firebaseio.com/products.json", requestOptions)
     .then(response => response.text())
-    .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
 
-function addToCart() {
-  /*
-    1° Verificar si en el carrito hay datos con el usuairo logeuado
-    2° Si hay datos con el usuario: 
-          traigo objeto, y lo pongo en variable de session
-          Agrego al carrito todo el nuevo objeto al cart/id-usuario.json
-       Si no hay datos con el usuario
-          Hago put directo
-  */ 
+function addToCart(cart) {
+  let newItemCart = `{"${JSON.parse(sessionStorage.getItem("sessionCart")).idUser}": ${JSON.stringify(cart)}}`
+
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  var raw = JSON.stringify({
-    "-MSpMxsuMdt-5H_cEmDk": [
-                              {
-                                "id": "MQZlAOQNTWK5u34h1aM",
-                                "qty": 1,
-                                "unitPrice": 300
-                              },
-                              {
-                                "id": "-MSuqHBvXyL75iB9POPY",
-                                "qty": 1,
-                                "unitPrice": 643
-                              }
-                            ]
-  });
+  var raw = newItemCart;
 
   var requestOptions = {
-    method: '',
+    method: 'PATCH',
     headers: myHeaders,
     body: raw,
     redirect: 'follow'
@@ -68,6 +61,27 @@ function addToCart() {
 
   fetch("https://mr-mercado-default-rtdb.firebaseio.com/cart.json", requestOptions)
     .then(response => response.text())
-    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+function editStockProdcut(idProduct, newCant) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  if (newCant !== 0) {
+    var raw = `{"qty_stock":${newCant}}`;
+  } else {
+    var raw = `{"qty_stock":0,"state":false}`;
+  }
+
+  var requestOptions = {
+    method: 'PATCH',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch(`https://mr-mercado-default-rtdb.firebaseio.com/products/${idProduct}.json`, requestOptions)
+    .then(response => response.text())
     .catch(error => console.log('error', error));
 }

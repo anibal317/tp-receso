@@ -1,4 +1,5 @@
 let tbody = document.getElementsByTagName("tbody")[0];
+let tbodyCart = document.getElementsByTagName("tbody")[1];
 let buyProduct = document.getElementsByClassName("acciones")
 let user = document.getElementById("txtUser")
 let pass = document.getElementById("txtPass")
@@ -17,4 +18,5 @@ let loadImg = document.getElementById("loadImg")
 let frmImg = document.getElementById("frmImg")
 let btnAddProduct = document.getElementById("btnAddProduct")
 let btnClearForm = document.getElementById("btnClearForm")
+let subTotal = document.getElementById("subTotal")
 

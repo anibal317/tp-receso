@@ -4,6 +4,8 @@ const urlBase = "https://mr-mercado-default-rtdb.firebaseio.com";
 
 //Variables generales
 let allProducts;
+let productDescription;
+let userCart;
 let allUsers;
 let imgDefault= "https://image.flaticon.com/icons/png/512/1370/1370329.png"
 
