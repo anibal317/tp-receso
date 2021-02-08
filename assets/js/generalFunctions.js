@@ -86,34 +86,40 @@ function crearListeners() {
     };
 }
 
-function actions(e) {
+async function actions(e) {
     jQuery.noConflict();
     switch (e.target.dataset.action) {
         case "buy":
-            let carrito = JSON.parse(sessionStorage.getItem("cartItems")) || []
+            carrito = JSON.parse(sessionStorage.getItem("cartItems")) || []
 
             let newProduct = {
                 id: e.target.dataset.internalid,
                 qty: 1,
                 unitPrice: parseFloat(e.target.dataset.unitprice)
             }
+            editStockProdcut(e.target.dataset.internalid, e.target.dataset.qty - 1)
 
-            if (carrito.length != 0) {
-                carrito.find(item => {
-                    if (item.id === e.target.dataset.internalid) {
-                        item.qty++
-                        sessionStorage.setItem("cartItems", JSON.stringify(carrito))
-                    } else {
-                        carrito.push(newProduct)
-                    }
-                })
-            } else {
-                carrito.push(newProduct)
-            }
+            // if (carrito.length != 0) {
+            //     carrito.find(item => {
+            //         if (item.id === e.target.dataset.internalid) {
+            //             item.qty++
+            //             sessionStorage.setItem("cartItems", JSON.stringify(carrito))
+            //         } else {
+            //             carrito.push(newProduct)
+            //         }
+            //     })
+            // } else {
+            //     carrito.push(newProduct)
+            // }
+            carrito.push(newProduct)
+            
+            
             createProductsCartRow(carrito)
             calculateCartPrice(carrito)
             addToCart(carrito)
+            updateData()
             break;
+
         default:
             break;
     }
@@ -161,4 +167,8 @@ function redirect(page) {
 function logout() {
     sessionStorage.removeItem("sessionCart");
     redirect(routes.home)
+}
+
+function updateData(){
+
 }

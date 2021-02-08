@@ -85,3 +85,22 @@ function editStockProdcut(idProduct, newCant) {
     .then(response => response.text())
     .catch(error => console.log('error', error));
 }
+
+function createOrder(cart){
+  let newOrder = `{"cartInfo":${JSON.stringify(cart)}, "userInfo": {"user-id": "${JSON.parse(sessionStorage.getItem("sessionCart")).idUser}", "user":"${JSON.parse(sessionStorage.getItem("sessionCart")).user}"}}`
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = newOrder;
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("https://mr-mercado-default-rtdb.firebaseio.com/orders.json", requestOptions)
+    .then(response => response.text())
+    .catch(error => console.log('error', error));
+}

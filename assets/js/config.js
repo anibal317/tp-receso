@@ -7,7 +7,8 @@ let allProducts;
 let productDescription;
 let userCart;
 let allUsers;
-let imgDefault= "https://image.flaticon.com/icons/png/512/1370/1370329.png"
+let imgDefault= "https://image.flaticon.com/icons/png/512/1370/1370329.png";
+let carrito;
 
 //Rutas
 

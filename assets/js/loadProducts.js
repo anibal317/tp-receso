@@ -20,4 +20,15 @@ window.addEventListener("load", () => {
 })
 
 lnkLogout.addEventListener("click", logout)
+btnFinalizarCompra.addEventListener("click", finalizarCompra)
 
+function finalizarCompra() {
+    getUserCart(JSON.parse(sessionStorage.getItem("sessionCart")).idUser)
+        .then(cart => {
+            sessionStorage.setItem("cartItems", JSON.stringify(cart))
+            createProductsCartRow(cart)
+        })
+    getAllProducts();
+    carrito = JSON.parse(sessionStorage.getItem("cartItems"))
+    createOrder(carrito)
+}

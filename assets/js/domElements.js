@@ -19,4 +19,5 @@ let frmImg = document.getElementById("frmImg")
 let btnAddProduct = document.getElementById("btnAddProduct")
 let btnClearForm = document.getElementById("btnClearForm")
 let subTotal = document.getElementById("subTotal")
+let btnFinalizarCompra = document.getElementById("btnFinalizarCompra")
 
