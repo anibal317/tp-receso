@@ -104,3 +104,18 @@ function createOrder(cart){
     .then(response => response.text())
     .catch(error => console.log('error', error));
 }
+
+function delCartUser(idCartUser){
+  var requestOptions = {
+    method: 'DELETE',
+    redirect: 'follow'
+  };
+  
+  fetch(`https://mr-mercado-default-rtdb.firebaseio.com/cart/${idCartUser}.json`, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      alert("Compra realziada con exito")
+      console.log(result)
+    })
+    .catch(error => console.log('error', error));
+}
