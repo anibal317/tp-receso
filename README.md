@@ -2,6 +2,7 @@ Descripción del proyecto:
 
 1* La base esta realziada en firebase. 
       La información esta dividida en:
+      
           * cart: tiene la infromación de las compras cada clave corresponde a un usuario que tiene un array de objetos con la info de los productos
                     "-MSpMxsuMdt-5H_cEmDk": [
                                               {
