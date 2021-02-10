@@ -98,7 +98,7 @@ async function actions(e) {
                 unitPrice: parseFloat(e.target.dataset.unitprice)
             }
             editStockProdcut(e.target.dataset.internalid, e.target.dataset.qty - 1)
-
+            getAllProducts();
             let itemExist = false
             carrito.forEach((item, index) => {
                 if (item.id === e.target.dataset.internalid) {
@@ -173,6 +173,3 @@ function logout() {
     redirect(routes.home)
 }
 
-function updateData() {
-
-}
