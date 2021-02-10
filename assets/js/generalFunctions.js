@@ -99,21 +99,25 @@ async function actions(e) {
             }
             editStockProdcut(e.target.dataset.internalid, e.target.dataset.qty - 1)
 
-            // if (carrito.length != 0) {
-            //     carrito.find(item => {
-            //         if (item.id === e.target.dataset.internalid) {
-            //             item.qty++
-            //             sessionStorage.setItem("cartItems", JSON.stringify(carrito))
-            //         } else {
-            //             carrito.push(newProduct)
-            //         }
-            //     })
-            // } else {
-            //     carrito.push(newProduct)
-            // }
-            carrito.push(newProduct)
-            
-            
+            let itemExist = false
+            carrito.forEach((item, index) => {
+                if (item.id === e.target.dataset.internalid) {
+                    item.qty++
+                    carrito.splice(index, 1, item)
+                    console.log(carrito)
+                    sessionStorage.setItem("cartItems", JSON.stringify(carrito))
+                    itemExist = true
+                }
+            })
+            if (itemExist) {
+                console.log("Se modifica cantidad")
+            } else {
+                carrito.push(newProduct)
+                console.log(carrito)
+                sessionStorage.setItem("cartItems", JSON.stringify(carrito))
+
+            }
+
             createProductsCartRow(carrito)
             calculateCartPrice(carrito)
             addToCart(carrito)
@@ -169,6 +173,6 @@ function logout() {
     redirect(routes.home)
 }
 
-function updateData(){
+function updateData() {
 
 }
